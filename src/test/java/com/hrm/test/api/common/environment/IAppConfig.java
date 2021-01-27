@@ -19,5 +19,8 @@ public interface IAppConfig {
     String getDbPsw();
 
     String getDbUrl();
+    String getGrantType();
+    String getClientId();
+    String getClientSecret();
 
 }

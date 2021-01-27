@@ -41,4 +41,17 @@ public class ConfigSetup {
         return getAppConfig().getDbUrl();
     }
 
+    public static String getGrantType() {
+        return getAppConfig().getGrantType();
+    }
+
+
+    public static String getClientId() {
+        return getAppConfig().getClientId();
+    }
+
+    public static  String getClientSecret() {
+        return getAppConfig().getClientSecret();
+    }
+
 }

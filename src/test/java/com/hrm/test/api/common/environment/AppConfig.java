@@ -54,5 +54,20 @@ public class AppConfig extends ConfigReader implements IAppConfig {
         return getValue("DB_URL");
     }
 
+    @Override
+    public String getGrantType() {
+        return getValue("GRANT_TYPE");
+    }
+
+    @Override
+    public String getClientId() {
+        return getValue("CLIENT_ID");
+    }
+
+    @Override
+    public String getClientSecret() {
+        return getValue("CLIENT_SECRET");
+    }
+
 
 }

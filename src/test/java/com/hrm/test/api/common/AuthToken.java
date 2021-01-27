@@ -31,19 +31,19 @@ public class AuthToken {
 
     //da pokusamo da ispravimo funkciju
     public static String getAuthToken() {
+        //staviti env properties
                         Response resp=given()
                                 .headers("Content-Type","application/x-www-form-urlencoded","Accept", ContentType.JSON)
-                                .param("grant_type","password")
-                                .param("client_id","ResourceOwner")
+                                .param("grant_type",ConfigSetup.getGrantType())
+                                .param("client_id",ConfigSetup.getClientId())
                                 .param("username", ConfigSetup.getAdmin())
                                 .param("password",ConfigSetup.getAdminPsw())
-                                .param("client_secret","owner")
+                                .param("client_secret",ConfigSetup.getClientSecret())
                                 .when()
                                 .post(ConfigSetup.getAuthURI())
                                 .then()
                                 .extract()
                                 .response();
-
                         return resp.jsonPath().getString("access_token");
 
     }

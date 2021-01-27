@@ -2,9 +2,11 @@ package com.hrm.test.api.functional.suites;
 
 import com.hrm.test.api.calls.PeopleAPI;
 import com.hrm.test.api.calls.WorklogAPI;
+import com.hrm.test.api.common.helper.WorklogTotatalStatisticHelper;
 import com.hrm.test.api.common.init.TestBase;
 import com.hrm.test.api.data.model.calendar.CalendarParticularPersonResponse;
 import com.hrm.test.api.data.model.error_message.ErrorMessageResponse;
+import com.hrm.test.api.data.model.person_statistics.PersonStatisticsParamsResponse;
 import com.hrm.test.api.data.model.work_statistics.TotalWorkStatisticsResponse;
 import com.hrm.test.api.data.model.work_statistics.WorkStatisticsResponse;
 import com.hrm.test.api.data.model.worklog.ChangeStatusRequest;
@@ -67,30 +69,6 @@ public class FunctionalTest extends TestBase {
         WorklogAPI.createChangeStatus(token,requestPrepare);
     }
 
-    @Test(groups = {"regression", "check-ins"})
-    @Description("User can not change status to break from off")
-    public static void changeStatusToBreakNotAvaibleIfUserIsOff() {
-        ChangeStatusRequest requestPrepare=new ChangeStatusRequest("Off","Check-out from job");
-        ChangeStatusRequest request=new ChangeStatusRequest("Break","User wants to use break when off");
-
-        logStep("INFO:We must first check-out the user and prepare his worklog-status to off");
-        logStep("INFO:The change status off is  verified with changeStatusOff test");
-        WorklogAPI.createChangeStatus(token,requestPrepare);
-
-        logStep("INFO: Create a request to change status to Break");
-        ErrorMessageResponse changeStatusErrorResponseRecieved = WorklogAPI.createChangeStatusErrorMessageResponse(token,request);
-        logStep("PASS: response was successfully created");
-
-        ErrorMessageResponse changeStatusErrorResponseExpected=new ErrorMessageResponse("You can't change status to break when you are off.");
-
-        SoftAssert softAssert=new SoftAssert();
-        logStep("INFO:Verify the error message response are the sam as actual");
-        softAssert.assertEquals(changeStatusErrorResponseExpected.getErrorMessage(),changeStatusErrorResponseRecieved.getErrorMessage());
-        softAssert.assertAll();
-        logStep("PASS:Error response was correct");
-
-
-    }
     @Test(groups = {"regression", "check-ins"})
     @Description("User logins and goes to the main page to check in to work from field")
     public static void changeStatusWorkFromField() {
@@ -170,7 +148,6 @@ public class FunctionalTest extends TestBase {
 
         WorkStatisticsResponse actualResponse= PeopleAPI.createWorkStatisticsResponse(token,"188","2020-12-19");
         logStep("PASS:Actual response was successfully created");
-
         logStep("INFO:Creating an expected response");
         WorkStatisticsResponse expectedResponse=new WorkStatisticsResponse("2020-12-19T00:00:00","70h 52m",
                 "30h 35m", "7h 0m","6h 7m",6.12);
@@ -185,11 +162,17 @@ public class FunctionalTest extends TestBase {
     public static void checkWorklogTotalStatistics(){
         logStep("Prepare data for live statistics:");
         TotalWorkStatisticsResponse actualResponse= PeopleAPI.createTotalWorkStatisticsResponse(token,"513");
+        logStep("Initializing a response for Person Statisics Params");
+        PersonStatisticsParamsResponse res=new PersonStatisticsParamsResponse();
         logStep("PASS:Actual response was successfully created");
         logStep("INFO:Creating an expected response");
-        TotalWorkStatisticsResponse expectedResponse=new TotalWorkStatisticsResponse("321h 19m",47,"6h 50m");
+        logStep("INFO:We will acumalate dates to this day");
+        WorklogTotatalStatisticHelper worklogTotatalStatisticHelper=new WorklogTotatalStatisticHelper(token);
+
+        TotalWorkStatisticsResponse expectedResponse=worklogTotatalStatisticHelper.calculateWorklogTotalStatistics();
         TotalWorkStatisticsAssert workStatisticsAssert=new TotalWorkStatisticsAssert();
         logStep("INFO:Verify that actual and expected response are equal");
+
         workStatisticsAssert.assertCreatedNoEqual(actualResponse,expectedResponse);
         logStep("PASS:The objects were successfully verified");
 

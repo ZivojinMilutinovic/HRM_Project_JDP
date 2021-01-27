@@ -38,5 +38,9 @@ public class PeopleAPI {
     {
         return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.get(accessToken,ApiEndpoints.WORKLOG_STATISTICS_TOTAL_RESPONSE+"/"+personID).body().asString(),TotalWorkStatisticsResponse.class);
     }
+    public static PersonStatisticsParamsResponse createPersonStatisticsParamsResponse(String accessToken, String personID,String date)
+    {
+        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.get(accessToken,ApiEndpoints.PERSON_STATISTICS_PARAMS_ENDPOINT+"/"+personID+"/"+date).body().asString(),PersonStatisticsParamsResponse.class);
+    }
 
 }
