@@ -69,5 +69,20 @@ public class AppConfig extends ConfigReader implements IAppConfig {
         return getValue("CLIENT_SECRET");
     }
 
+    @Override
+    public String getSeleniumBaseUrl() {
+        return getValue("BASE_URL");
+    }
+
+    @Override
+    public String getSeleniumEmail() {
+        return getValue("EMAIL_SELENIUM");
+    }
+
+    @Override
+    public String getSeleniumPassword() {
+        return getValue("PASSWORD_SELENIUM");
+    }
+
 
 }

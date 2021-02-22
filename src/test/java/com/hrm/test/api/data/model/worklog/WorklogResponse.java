@@ -82,6 +82,10 @@ public class WorklogResponse implements Serializable
     @ResponseRequiredField(canBeEmpty = true)
     @Expose
     private String Image;
+    @SerializedName("Image")
+    @ResponseRequiredField(canBeEmpty = true)
+    @Expose
+    private Boolean AutoBreakEnabled;
     @SerializedName("LoginStatusId")
     @Expose
     private Integer LoginStatusId;
@@ -96,6 +100,14 @@ public class WorklogResponse implements Serializable
      * 
      */
     public WorklogResponse() {
+    }
+
+    public Boolean getAutoBreakEnabled() {
+        return AutoBreakEnabled;
+    }
+
+    public void setAutoBreakEnabled(Boolean autoBreakEnabled) {
+        AutoBreakEnabled = autoBreakEnabled;
     }
 
     /**
@@ -119,7 +131,7 @@ public class WorklogResponse implements Serializable
      * @param LoginStatusId
      * @param Id
      */
-    public WorklogResponse(String HtecEmail, Branch Branch, String LoginStatus, List<Role> Roles, List<Permission> Permissions, List<Position> Positions, List<Object> OpenLogs, List<Object> RelatedUsers, List<Tutorial> Tutorials, List<Integer> AvailableStatusIds, Integer Id, String FirstName, String LastName, String ParentName, String Gender, String Image, Integer LoginStatusId, Integer EmployeeStatus,Boolean ShowBreakModal) {
+    public WorklogResponse(String HtecEmail, Branch Branch, String LoginStatus, List<Role> Roles, List<Permission> Permissions, List<Position> Positions, List<Object> OpenLogs, List<Object> RelatedUsers, List<Tutorial> Tutorials, List<Integer> AvailableStatusIds, Integer Id, String FirstName, String LastName, String ParentName, String Gender, String Image, Integer LoginStatusId, Integer EmployeeStatus,Boolean ShowBreakModal,Boolean AutoBreakEnabled) {
         super();
         this.HtecEmail = HtecEmail;
         this.Branch = Branch;
@@ -140,6 +152,7 @@ public class WorklogResponse implements Serializable
         this.LoginStatusId = LoginStatusId;
         this.EmployeeStatus = EmployeeStatus;
         this.ShowBreakModal=ShowBreakModal;
+        this.AutoBreakEnabled=AutoBreakEnabled;
     }
 
     public String getHtecEmail() {
@@ -293,12 +306,13 @@ public class WorklogResponse implements Serializable
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("HtecEmail", HtecEmail).append("Branch", Branch).append("LoginStatus", LoginStatus).append("Roles", Roles).append("Permissions", Permissions).append("Positions", Positions).append("OpenLogs", OpenLogs).append("RelatedUsers", RelatedUsers).append("Tutorials", Tutorials).append("AvailableStatusIds", AvailableStatusIds).append("Id", Id).append("FirstName", FirstName).append("LastName", LastName).append("ParentName", ParentName).append("Gender", Gender).append("Image", Image).append("LoginStatusId", LoginStatusId).append("EmployeeStatus", EmployeeStatus).toString();
+        return new ToStringBuilder(this).append("HtecEmail", HtecEmail).append("Branch", Branch).append("LoginStatus", LoginStatus).append("Roles", Roles).append("Permissions", Permissions).append("Positions", Positions).append("OpenLogs", OpenLogs).append("RelatedUsers", RelatedUsers).append("Tutorials", Tutorials).append("AvailableStatusIds", AvailableStatusIds).append("Id", Id).append("FirstName", FirstName).append("LastName", LastName).append("ParentName", ParentName).append("Gender", Gender).append("Image", Image)
+                .append("LoginStatusId", LoginStatusId).append("EmployeeStatus", EmployeeStatus).append("AutoBreakEnabled",AutoBreakEnabled).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(LastName).append(Image).append(Gender).append(Roles).append(Positions).append(HtecEmail).append(LoginStatus).append(Branch).append(AvailableStatusIds).append(EmployeeStatus).append(OpenLogs).append(FirstName).append(ParentName).append(Tutorials).append(Permissions).append(RelatedUsers).append(LoginStatusId).append(Id).append(ShowBreakModal).toHashCode();
+        return new HashCodeBuilder().append(LastName).append(AutoBreakEnabled).append(Image).append(Gender).append(Roles).append(Positions).append(HtecEmail).append(LoginStatus).append(Branch).append(AvailableStatusIds).append(EmployeeStatus).append(OpenLogs).append(FirstName).append(ParentName).append(Tutorials).append(Permissions).append(RelatedUsers).append(LoginStatusId).append(Id).append(ShowBreakModal).toHashCode();
     }
 
     @Override
@@ -310,7 +324,7 @@ public class WorklogResponse implements Serializable
             return false;
         }
         WorklogResponse rhs = ((WorklogResponse) other);
-        return new EqualsBuilder().append(LastName, rhs.LastName).append(Image, rhs.Image).append(Gender, rhs.Gender).append(Roles, rhs.Roles).append(Positions, rhs.Positions).append(HtecEmail, rhs.HtecEmail).append(LoginStatus, rhs.LoginStatus).append(Branch, rhs.Branch).append(AvailableStatusIds, rhs.AvailableStatusIds).append(EmployeeStatus, rhs.EmployeeStatus).append(OpenLogs, rhs.OpenLogs).append(FirstName, rhs.FirstName).append(ParentName, rhs.ParentName).append(Tutorials, rhs.Tutorials).append(Permissions, rhs.Permissions).append(RelatedUsers, rhs.RelatedUsers).append(LoginStatusId, rhs.LoginStatusId).append(Id, rhs.Id).append(ShowBreakModal, rhs.ShowBreakModal).isEquals();
+        return new EqualsBuilder().append(LastName, rhs.LastName).append(AutoBreakEnabled,rhs.AutoBreakEnabled).append(Image, rhs.Image).append(Gender, rhs.Gender).append(Roles, rhs.Roles).append(Positions, rhs.Positions).append(HtecEmail, rhs.HtecEmail).append(LoginStatus, rhs.LoginStatus).append(Branch, rhs.Branch).append(AvailableStatusIds, rhs.AvailableStatusIds).append(EmployeeStatus, rhs.EmployeeStatus).append(OpenLogs, rhs.OpenLogs).append(FirstName, rhs.FirstName).append(ParentName, rhs.ParentName).append(Tutorials, rhs.Tutorials).append(Permissions, rhs.Permissions).append(RelatedUsers, rhs.RelatedUsers).append(LoginStatusId, rhs.LoginStatusId).append(Id, rhs.Id).append(ShowBreakModal, rhs.ShowBreakModal).isEquals();
     }
 
 }

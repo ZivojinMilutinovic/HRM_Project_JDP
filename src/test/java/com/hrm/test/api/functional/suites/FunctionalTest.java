@@ -20,6 +20,8 @@ import org.testng.asserts.SoftAssert;
 
 
 // each test class should extend TestBase in order to inherit all common behaviors and to be logged properly in report
+
+
 public class FunctionalTest extends TestBase {
 
     // each test case should be simple, readable, in few lines and without any to technical steps. It should represent

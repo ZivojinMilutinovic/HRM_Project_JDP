@@ -54,4 +54,14 @@ public class ConfigSetup {
         return getAppConfig().getClientSecret();
     }
 
+    public static  String getSeleniumBaseUrl() {
+        return getAppConfig().getSeleniumBaseUrl();
+    }
+    public static  String getSeleniumEmail() {
+        return getAppConfig().getSeleniumEmail();
+    }
+    public static  String getSeleniumPassword() {
+        return getAppConfig().getSeleniumPassword();
+    }
+
 }

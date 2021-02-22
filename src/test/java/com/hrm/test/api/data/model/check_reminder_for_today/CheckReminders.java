@@ -18,7 +18,7 @@ public class CheckReminders implements Serializable
     @Expose
     private String CheckInType;
     @SerializedName("CheckOutType")
-    @ResponseRequiredField(canBeEmpty = false)
+    @ResponseRequiredField(canBeEmpty = true)
     @Expose
     private String CheckOutType;
     @SerializedName("Id")
@@ -34,11 +34,11 @@ public class CheckReminders implements Serializable
     @Expose
     private String StartTime;
     @SerializedName("EndTime")
-    @ResponseRequiredField(canBeEmpty = false)
+    @ResponseRequiredField(canBeEmpty = true)
     @Expose
     private String EndTime;
     @SerializedName("StatusLabel")
-    @ResponseRequiredField(canBeEmpty = false)
+    @ResponseRequiredField(canBeEmpty = true)
     @Expose
     private String StatusLabel;
     private final static long serialVersionUID = 4749341827081616731L;

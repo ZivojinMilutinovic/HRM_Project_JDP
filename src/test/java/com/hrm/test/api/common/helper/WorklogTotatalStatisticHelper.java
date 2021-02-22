@@ -51,7 +51,7 @@ public class WorklogTotatalStatisticHelper {
 
         sumHours-=diff;
         int receivedHours=(int)sumHours;
-        int receivedMinutes=(int)((sumHours-receivedHours)*60);
+        int receivedMinutes=(int)((sumHours-receivedHours)*60)+1;
         String totalWorkHours=receivedHours+"h "+receivedMinutes+"m";
         int totalWorkingDaysCount=res.getWorkingDaysCount();
         double averageHours=sumHours/totalWorkingDaysCount;

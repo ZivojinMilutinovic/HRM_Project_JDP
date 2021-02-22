@@ -48,7 +48,7 @@ public class PageItem implements Serializable
     @Expose
     private Integer RotateImage;
     @SerializedName("Positions")
-    @ResponseRequiredField(canBeEmpty = false)
+    @ResponseRequiredField(canBeEmpty = true)
     @Expose
     private List<Position> Positions = null;
     @SerializedName("EmploymentId")

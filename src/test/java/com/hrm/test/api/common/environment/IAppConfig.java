@@ -22,5 +22,8 @@ public interface IAppConfig {
     String getGrantType();
     String getClientId();
     String getClientSecret();
+    String getSeleniumBaseUrl();
+    String getSeleniumEmail();
+    String getSeleniumPassword();
 
 }
