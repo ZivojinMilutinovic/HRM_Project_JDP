@@ -63,14 +63,14 @@ public class HRMProfilePage {
             Assert.assertEquals(strings[i],HRMConstatnts.profilePageLabels[i]);
     }
 
-    @Test
+    @Test(priority = 6)
     public void verifyShirtSizeSelectBox(){
         //element treba da postane clickable u nekom trenutku
         WebElement clickEl=driver.findElement(By.xpath(HRMConstatnts.othersSectionEditXPath));
         clickEl.click();
         driver.findElement(By.cssSelector("#select_value_label_51")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select_option_192")));
-        driver.findElement(By.id("select_option_192")).click();
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select_option_189")));
+        driver.findElement(By.id("select_option_189")).click();
         driver.findElement(By.xpath(HRMConstatnts.othersSectionConfrimXPath)).click();
         By eli1=By.xpath("/html/body/main/hrm-app/div/main/ui-view/hrm-employee-details/div[2]/hrm-employee-profile/div/div[7]/hrm-employee-other/form/hrm-employee-card/div/div[2]/div/div[2]/div[1]/md-input-container/md-select/md-select-value/span[1]/div");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(eli1));
@@ -79,13 +79,13 @@ public class HRMProfilePage {
         Assert.assertEquals("M",actualResult);
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
-    @Test
+    @Test(priority = 7)
     public void verifyGlassesInputField(){
         WebElement clickEl=driver.findElement(By.xpath(HRMConstatnts.othersSectionEditXPath));
         clickEl.click();
         driver.findElement(By.cssSelector("#select_value_label_52")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select_option_198")));
-        driver.findElement(By.id("select_option_198")).click();
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select_option_195")));
+        driver.findElement(By.id("select_option_195")).click();
         driver.findElement(By.xpath(HRMConstatnts.othersSectionConfrimXPath)).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/main/hrm-app/div/main/ui-view/hrm-employee-details/div[2]/hrm-employee-profile/div/div[7]/hrm-employee-other/form/hrm-employee-card/div/div[2]/div/div[3]/div[1]/md-input-container/md-select/md-select-value/span[1]/div")));
         String actualResult=driver.findElement(By.xpath("/html/body/main/hrm-app/div/main/ui-view/hrm-employee-details/div[2]/hrm-employee-profile/div/div[7]/hrm-employee-other/form/hrm-employee-card/div/div[2]/div/div[3]/div[1]/md-input-container/md-select/md-select-value/span[1]/div")).getText();
