@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="ExampleName" parallel="tests" thread-count="8" configfailurepolicy="continue">
+<suite name="HRM" parallel="tests" thread-count="8" configfailurepolicy="continue">
     <!-- project parameters -->
-    <parameter name="project" value="htecqa"/>
+    <parameter name="project" value="hrm"/>
     <parameter name="version" value="1.0.0"/>
 
     <!-- define test groups and classes that should be included in this run configuration -->
-    <test name="Example">
+    <test name="JDPTest">
         <groups>
             <run>
                 <include name="regression"/>
                 <include name="smoke"/>
                 <include name="knownBugs"/>
                 <include name="integration"/>
+                <include name="ui"/>
             </run>
         </groups>
         <classes>
             <class name="com.hrm.test.api.integration.suites.IntegrationTest">
             </class>
             <class name="com.hrm.test.api.functional.suites.FunctionalTest">
+            </class>
+            <class name="com.hrm.test.ui.HRMProfilePage">
             </class>
         </classes>
     </test>

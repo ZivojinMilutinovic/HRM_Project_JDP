@@ -40,13 +40,13 @@ public class HRMProfilePage {
         String expectedTitle="HRM";
         Assert.assertEquals(expectedTitle,driver.getTitle());
     }
-    @Test
+    @Test(groups = {"ui"})
     public void verifyProfileName(){
         String expectedProfileName="Živojin Milutinovic";
         WebElement el=driver.findElement(By.cssSelector(".top-card-info__profile--name p"));
         Assert.assertEquals(expectedProfileName,el.getText());
     }
-    @Test
+    @Test(groups = {"ui"})
     public void verifyEmployeeNavigationIcons(){
        List<WebElement> elements= driver.findElements(By.cssSelector(".employee__navigation--icons--node p"));
        String names[]={"Basic","Leave Management","Relation Management"};
@@ -54,7 +54,7 @@ public class HRMProfilePage {
            Assert.assertEquals(elements.get(i).getText(),names[i]);
        }
     }
-    @Test
+    @Test(groups = {"ui"})
     public void verifyProfilePageLabels(){
         List<WebElement> elements= driver.findElements(By.cssSelector("label"));
         String[] strings= elements.stream().filter(el->el.getText().length()>0).map(el->el.getText()).toArray(String[]::new);
@@ -63,7 +63,7 @@ public class HRMProfilePage {
             Assert.assertEquals(strings[i],HRMConstatnts.profilePageLabels[i]);
     }
 
-    @Test(priority = 6)
+    @Test(priority = 6,groups = {"ui"})
     public void verifyShirtSizeSelectBox(){
         //element treba da postane clickable u nekom trenutku
         WebElement clickEl=driver.findElement(By.xpath(HRMConstatnts.othersSectionEditXPath));
@@ -79,7 +79,7 @@ public class HRMProfilePage {
         Assert.assertEquals("M",actualResult);
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
-    @Test(priority = 7)
+    @Test(priority = 7,groups = {"ui"})
     public void verifyGlassesInputField(){
         WebElement clickEl=driver.findElement(By.xpath(HRMConstatnts.othersSectionEditXPath));
         clickEl.click();
@@ -88,11 +88,12 @@ public class HRMProfilePage {
         driver.findElement(By.id("select_option_195")).click();
         driver.findElement(By.xpath(HRMConstatnts.othersSectionConfrimXPath)).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/main/hrm-app/div/main/ui-view/hrm-employee-details/div[2]/hrm-employee-profile/div/div[7]/hrm-employee-other/form/hrm-employee-card/div/div[2]/div/div[3]/div[1]/md-input-container/md-select/md-select-value/span[1]/div")));
-        String actualResult=driver.findElement(By.xpath("/html/body/main/hrm-app/div/main/ui-view/hrm-employee-details/div[2]/hrm-employee-profile/div/div[7]/hrm-employee-other/form/hrm-employee-card/div/div[2]/div/div[3]/div[1]/md-input-container/md-select/md-select-value/span[1]/div")).getText();
+        WebElement element=driver.findElement(By.xpath("/html/body/main/hrm-app/div/main/ui-view/hrm-employee-details/div[2]/hrm-employee-profile/div/div[7]/hrm-employee-other/form/hrm-employee-card/div/div[2]/div/div[3]/div[1]/md-input-container/md-select/md-select-value/span[1]/div"));
+        String actualResult=element.getText();
         Assert.assertEquals("No",actualResult);
 
     }
-    @Test(priority = 1)
+    @Test(priority = 1,groups = {"ui"})
     public void verifyAddChild(){
         int previousNumberOfChildren=driver.findElements(By.cssSelector("#children > form > hrm-employee-card > div > div.employee-card__content > div.flex-grid.ng-scope  ")).size();
         WebElement clickEl=driver.findElement(By.xpath(HRMConstatnts.childrenSectionEditXPath));
@@ -120,7 +121,7 @@ public class HRMProfilePage {
         int currentNumberOfChildren=driver.findElements(By.cssSelector("#children > form > hrm-employee-card > div > div.employee-card__content > div.flex-grid.ng-scope  ")).size();
         Assert.assertEquals(previousNumberOfChildren+1,currentNumberOfChildren);
     }
-    @Test(priority = 2)
+    @Test(priority = 2,groups = {"ui"})
     public void verifyRemoveChild(){
         //prethodno dete koje smo dodali njega cemo da izbacimo
         int previousNumberOfChildren=driver.findElements(By.cssSelector("#children > form > hrm-employee-card > div > div.employee-card__content > div.flex-grid.ng-scope  ")).size();

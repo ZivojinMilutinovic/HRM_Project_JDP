@@ -38,7 +38,7 @@ public class WorklogResponse implements Serializable
     @ResponseRequiredField(canBeEmpty = false)
     @Expose
     private List<Permission> Permissions = null;
-    @ResponseRequiredField(canBeEmpty = false)
+    @ResponseRequiredField(canBeEmpty = true)
     @SerializedName("Positions")
     @Expose
     private List<Position> Positions = null;
