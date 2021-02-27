@@ -47,7 +47,7 @@ public class HRMLogin {
     public HRMLogin(){
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
             this.driver=new ChromeDriver();
-        this.webDriverWait = new WebDriverWait(driver, 25);
+        this.webDriverWait = new WebDriverWait(driver, 60);
         this.actions=new Actions(this.driver);
         this.javascriptExecutor=(JavascriptExecutor) this.driver;
     }

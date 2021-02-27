@@ -35,7 +35,7 @@ public class HRMProfilePage {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("leave-management-tab")));
         driver.manage().window().maximize();
     }
-
+    @Test(groups = {"ui"})
     public void verifyTittle(){
         String expectedTitle="HRM";
         Assert.assertEquals(expectedTitle,driver.getTitle());
@@ -54,6 +54,7 @@ public class HRMProfilePage {
            Assert.assertEquals(elements.get(i).getText(),names[i]);
        }
     }
+
     @Test(groups = {"ui"})
     public void verifyProfilePageLabels(){
         List<WebElement> elements= driver.findElements(By.cssSelector("label"));
